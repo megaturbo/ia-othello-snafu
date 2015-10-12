@@ -1,20 +1,2 @@
 INDEX VERSION 1.127+C:\Users\Quentin\Documents\Git\ai\ia-othello-snafu\.metadata\.plugins\org.eclipse.jdt.core
-3828542453.index
-2220226166.index
-3043566140.index
-3138188087.index
-226562191.index
-2381801184.index
-4032872500.index
-3139474847.index
-1385093225.index
-3531040502.index
-2655881212.index
-2010537359.index
-3189761233.index
-220397898.index
-3498246728.index
-492622304.index
-1628139260.index
-1777455421.index
-2100709385.index
+3893000289.index

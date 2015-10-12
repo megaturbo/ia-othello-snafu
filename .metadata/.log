@@ -42,3 +42,8 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui.ide 4 4 2015-10-12 17:22:48.088
+!MESSAGE Problems occurred refreshing the selected resources.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2015-10-12 17:22:48.088
+!MESSAGE The project description file (.project) for 'Othello' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
