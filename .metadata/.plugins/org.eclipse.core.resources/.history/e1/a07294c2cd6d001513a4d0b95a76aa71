@@ -17,12 +17,12 @@ public class Joueur
 	// ******************************************************
     public Joueur() { }
 	
-	public Joueur(int depth, int playerID)
-	{
-	  this.depth = depth;
-	  this.playerID = playerID;
+	public Joueur(int depth, int playerID) 
+	{  
+	  this.depth = depth ; 
+	  this.playerID = playerID ;
 	}
-
+	
 	// ******************************************************
 	//   M\'ethode appel\'ee \`a chaque coup du Joueur Adverse
 	//     PARAMETRE : move est le coup jou\'e par l'adversaire
@@ -32,7 +32,7 @@ public class Joueur
 	// ******************************************************
 	public Move nextPlay(Move move)
 	{
-	    return null;
+	    return null ;
 	}			
 }
 		

@@ -13,8 +13,4 @@ class Joueur extends Othello.Joueur
 	  this.depth = depth;
 	  this.playerID = playerID;
 	}
-	public Move nextPlay(Move move)
-	{
-	    return null;
-	}	
 }

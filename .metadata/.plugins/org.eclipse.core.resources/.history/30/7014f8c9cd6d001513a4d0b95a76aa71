@@ -32,7 +32,7 @@ public class Joueur
 	// ******************************************************
 	public Move nextPlay(Move move)
 	{
-	    return null;
+	    return null ;
 	}			
 }
 		
