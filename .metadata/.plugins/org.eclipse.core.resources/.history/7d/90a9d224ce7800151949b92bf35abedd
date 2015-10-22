@@ -4,6 +4,26 @@ import Othello.*;
 import java.lang.Math;
 import java.util.ArrayList;
 
+class Node
+{
+	public Node()
+	{
+		
+	}
+	public int getValue()
+	{
+		return 0;
+	}
+	public ArrayList<Node> getChildren()
+	{
+		return null;
+	}
+	public boolean hasChildren()
+	{
+		return false;
+	}
+}
+
 class Joueur extends Othello.Joueur
 {
 	public Joueur(){

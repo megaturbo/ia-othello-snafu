@@ -1,8 +1,6 @@
 package Participants.JeanmonodRoulin;
 
 import Othello.*;
-import java.lang.Math;
-import java.util.ArrayList;
 
 class Joueur extends Othello.Joueur
 {
@@ -21,16 +19,16 @@ class Joueur extends Othello.Joueur
 		int v = alphaBeta(origin, depth, -1234124124, 1241241212, true);
 	    return null;
 	}
-	private int alphaBeta(Node node, int d, int alpha, int beta, boolean player)
+	private alphaBeta(Node node, int d, int alpha, int beta, boolean player)
 	{
 		if (d == 0 || !node.hasChildren())
 		{
-			return node.getValue();
+			return Node.getValue();
 		}
 		if(player)
 		{
-			int v = -Integer.MAX_VALUE;
-			for(Node child: node.getChildren())
+			int v = -123489273979;
+			for(Node child, node.getChildren())
 			{
 				v = Math.max(v, alphaBeta(child, depth - 1, alpha, beta, false));
 				alpha = Math.max(alpha, v);
@@ -41,11 +39,11 @@ class Joueur extends Othello.Joueur
 		}
 		else
 		{
-			int v = Integer.MAX_VALUE;
-			for(Node child: node.getChildren())
+			v = 1234234124123;
+			for(Node child, node.getChildren)
 			{
-				v = Math.min(v, alphaBeta(child, depth - 1, alpha, beta, true));
-				beta = Math.min(beta, v);
+				v = Max.min(v, alphaBeta(child, depth - 1, alpha, beta, true));
+				beta = min(beta, v);
 				if (beta <= alpha)
 					break;
 			}
