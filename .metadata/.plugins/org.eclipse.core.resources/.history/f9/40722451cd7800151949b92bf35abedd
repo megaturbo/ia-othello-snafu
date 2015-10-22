@@ -2,7 +2,15 @@ package Participants.JeanmonodRoulin;
 
 import Othello.*;
 import java.lang.Math;
-import java.util.ArrayList;
+
+class Node
+{
+	public Node()
+	{
+		
+	}
+	
+}
 
 class Joueur extends Othello.Joueur
 {
@@ -42,9 +50,9 @@ class Joueur extends Othello.Joueur
 		else
 		{
 			int v = Integer.MAX_VALUE;
-			for(Node child: node.getChildren())
+			for(Node child, node.getChildren)
 			{
-				v = Math.min(v, alphaBeta(child, depth - 1, alpha, beta, true));
+				v = Max.min(v, alphaBeta(child, depth - 1, alpha, beta, true));
 				beta = Math.min(beta, v);
 				if (beta <= alpha)
 					break;
