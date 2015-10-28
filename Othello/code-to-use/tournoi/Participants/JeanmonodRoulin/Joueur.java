@@ -5,17 +5,20 @@ import java.lang.Math;
 import java.util.ArrayList;
 import Participants.JeanmonodRoulin.*;
 
-class Joueur extends Othello.Joueur
+public class Joueur extends Othello.Joueur
 {
-	GameBoard gameBoard;
-	int other = playerID == 1 ? 0 : 1;
+	private GameBoard gameBoard;
+	private int other;
 	public Joueur(){
 		super();
 	}
 	
 	public Joueur(int depth, int playerID)
 	{
-		super(depth, playerID);
+		super();
+		this.playerID = playerID;
+		this.depth = depth;
+		this.other =  playerID == 1 ? 0 : 1;
 		gameBoard = new GameBoard();
 	}
 	public Move nextPlay(Move move)
@@ -25,6 +28,8 @@ class Joueur extends Othello.Joueur
 		evaluate(origin, gameBoard);
 		Node datMove = null;
 		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, 1, gameBoard, datMove);
+		
+		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever
