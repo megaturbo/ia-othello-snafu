@@ -320,9 +320,9 @@ public class GameBoard {
 	/***
 	 * Checking ig the given move is possible
 	 * 
-	 * @param line
-	 * @param column
-	 * @param playerID
+	 * @param line line to check
+	 * @param column column to check
+	 * @param playerID player id
 	 * @return
 	 */
 	private boolean isMovePossible(int line, int column, int playerID) {
@@ -348,12 +348,12 @@ public class GameBoard {
 	/***
 	 * Checking if move possible by testing only one direction
 	 * 
-	 * @param line
-	 * @param column
-	 * @param playerID
-	 * @param dLine
-	 * @param dColumn
-	 * @param ennemyFound
+	 * @param line line to check
+	 * @param column column to check
+	 * @param playerID player id
+	 * @param dLine direction line
+	 * @param dColumn direction column
+	 * @param ennemyFound is enemy found
 	 * @return
 	 */
 	private boolean checkDirection(int line, int column, int playerID,
@@ -362,7 +362,7 @@ public class GameBoard {
 		if (line + dLine >= BOARD_SIZE || column + dColumn >= BOARD_SIZE
 				|| line + dLine < 0 || column + dColumn < 0) {
 			return false;
-		}
+        }
 
 		// Get playerID of the next cell
 		int idPlayerAtPos = getPlayerIDAtPos(line + dLine, column + dColumn);
