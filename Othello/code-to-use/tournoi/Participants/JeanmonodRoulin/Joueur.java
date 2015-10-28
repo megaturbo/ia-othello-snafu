@@ -27,7 +27,7 @@ public class Joueur extends Othello.Joueur
 		gameBoard.addCoin(move, other);
 		Node origin = new Node(move);
 		evaluate(origin, gameBoard);
-		Node datMove = origin;
+		Node datMove = new Node(move);
 		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, 1, gameBoard, datMove);
 		
 		gameBoard.addCoin(datMove.getMove(), playerID);
@@ -52,18 +52,20 @@ public class Joueur extends Othello.Joueur
 			System.out.println("EVAL " + node.getEvaluation());
 			return node.getEvaluation();
 		}
-		if(player == 1)
+		if(player == playerID)
 		{
 			int v = -Integer.MAX_VALUE;
 			for(Node child: node.getChildNodeList())
 			{
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), player);
-				v = Math.max(v, alphaBeta(child, d - 1, alpha, beta, 0, clone, datMove));
+				v = Math.max(v, alphaBeta(child, d - 1, alpha, beta, other, clone, datMove));
 				if(v > alpha)
-					datMove = child;
+				{
+					datMove.setMove(child.getMove());
+						System.out.println("SALUT ENCULE");
+				}
 				alpha = Math.max(alpha, v);
-				System.out.println("ALPHA " + datMove.getEvaluation());
 				if (beta >= alpha)
 					break;
 			}
@@ -76,11 +78,13 @@ public class Joueur extends Othello.Joueur
 			{
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), other);
-				v = Math.min(v, alphaBeta(child, d - 1, alpha, beta, 1, clone, datMove));
+				v = Math.min(v, alphaBeta(child, d - 1, alpha, beta, playerID, clone, datMove));
 				beta = Math.min(beta, v);
 				if(v < beta)
-					datMove = child;
-				System.out.println("ALPHA " + datMove.getEvaluation());
+				{
+					datMove.setMove(child.getMove());
+						System.out.println("SALUT TROUDUCL");
+				}
 				if (beta <= alpha)
 					break;
 			}
