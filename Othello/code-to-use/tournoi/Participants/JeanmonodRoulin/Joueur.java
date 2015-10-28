@@ -7,6 +7,8 @@ import Participants.JeanmonodRoulin.*;
 
 class Joueur extends Othello.Joueur
 {
+	GameBoard gameBoard;
+	int other = playerID == 1 ? 0 : 1;
 	public Joueur(){
 		super();
 	}
@@ -14,26 +16,41 @@ class Joueur extends Othello.Joueur
 	public Joueur(int depth, int playerID)
 	{
 		super(depth, playerID);
+		gameBoard = new GameBoard();
 	}
 	public Move nextPlay(Move move)
 	{
+		gameBoard.addCoin(move, other);
 		Node origin = new Node(move);
-		origin.setEvaluation(0);
-		int v = alphaBeta(origin, depth, -1234124124, 1241241212, true);
-	    return null;
+		evaluate(origin, gameBoard);
+		Node datMove = null;
+		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, 1, gameBoard, datMove);
+	    return datMove.getMove();
 	}
-	private int alphaBeta(Node node, int d, int alpha, int beta, boolean player)
+	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever
+	{
+		int salutlacompagnie = gb.getCoinCount(playerID) * 2 - gb.getCoinCount(other)
+								+ gb.getEdgeCoinCount(playerID) * 5 - gb.getEdgeCoinCount(other) * 4
+								+ gb.getCornerCoinCount(playerID) * 10 - gb.getCoinCount(other) * 8;
+		node.setEvaluation(salutlacompagnie);
+	}
+	private int alphaBeta(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
 	{
 		if (d == 0 || node.isLeaf())
 		{
+			evaluate(node, gb);
 			return node.getEvaluation();
 		}
-		if(player)
+		if(player == 1)
 		{
 			int v = -Integer.MAX_VALUE;
 			for(Node child: node.getChildNodeList())
 			{
-				v = Math.max(v, alphaBeta(child, depth - 1, alpha, beta, false));
+				GameBoard clone = gb.clone();
+				clone.addCoin(child.getMove(), player);
+				v = Math.max(v, alphaBeta(child, depth - 1, alpha, beta, 0, clone, datMove));
+				if(v > alpha)
+					datMove = child;
 				alpha = Math.max(alpha, v);
 				if (beta >= alpha)
 					break;
@@ -45,8 +62,12 @@ class Joueur extends Othello.Joueur
 			int v = Integer.MAX_VALUE;
 			for(Node child: node.getChildNodeList())
 			{
-				v = Math.min(v, alphaBeta(child, depth - 1, alpha, beta, true));
+				GameBoard clone = gb.clone();
+				clone.addCoin(child.getMove(), other);
+				v = Math.min(v, alphaBeta(child, depth - 1, alpha, beta, 1, clone, datMove));
 				beta = Math.min(beta, v);
+				if(v < beta)
+					datMove = child;
 				if (beta <= alpha)
 					break;
 			}
