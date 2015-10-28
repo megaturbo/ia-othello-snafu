@@ -35,12 +35,12 @@ public class Joueur extends Othello.Joueur
 	}
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever
 	{
-		Random random = new Random();
+		//Random random = new Random();
 		int salutlacompagnie = gb.getCoinCount(playerID) * 2 - gb.getCoinCount(other)
 								+ gb.getEdgeCoinCount(playerID) * 5 - gb.getEdgeCoinCount(other) * 4
 								+ gb.getCornerCoinCount(playerID) * 10 - gb.getCoinCount(other) * 8;
-		//node.setEvaluation(salutlacompagnie);
-		node.setEvaluation(random.nextInt(100));
+		node.setEvaluation(salutlacompagnie);
+		//node.setEvaluation(random.nextInt(100));
 	}
 	private int alphaBeta(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
 	{
