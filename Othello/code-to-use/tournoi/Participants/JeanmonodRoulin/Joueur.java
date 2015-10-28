@@ -55,7 +55,7 @@ public class Joueur extends Othello.Joueur
 			{
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), player);
-				v = Math.max(v, alphaBeta(child, depth - 1, alpha, beta, 0, clone, datMove));
+				v = Math.max(v, alphaBeta(child, d - 1, alpha, beta, 0, clone, datMove));
 				if(v > alpha)
 					datMove = child;
 				alpha = Math.max(alpha, v);
@@ -71,7 +71,7 @@ public class Joueur extends Othello.Joueur
 			{
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), other);
-				v = Math.min(v, alphaBeta(child, depth - 1, alpha, beta, 1, clone, datMove));
+				v = Math.min(v, alphaBeta(child, d - 1, alpha, beta, 1, clone, datMove));
 				beta = Math.min(beta, v);
 				if(v < beta)
 					datMove = child;
