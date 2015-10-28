@@ -41,6 +41,8 @@ public class Joueur extends Othello.Joueur
 	}
 	private int alphaBeta(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
 	{
+		for(Move checkDatMoves : gb.getPossibleMoves(player))
+			node.addChildNode(new Node(checkDatMoves));
 		if (d == 0 || node.isLeaf())
 		{
 			evaluate(node, gb);
