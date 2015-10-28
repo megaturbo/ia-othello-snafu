@@ -25,6 +25,8 @@ public class Joueur extends Othello.Joueur
 	public Move nextPlay(Move move)
 	{
 		gameBoard.addCoin(move, other);
+		if (gameBoard.getPossibleMoves(playerID).size() == 0)
+			return null; //well played, i concede
 		Node origin = new Node(move);
 		evaluate(origin, gameBoard);
 		Node datMove = new Node(move);
@@ -49,7 +51,6 @@ public class Joueur extends Othello.Joueur
 		if (d == 0 || node.isLeaf())
 		{
 			evaluate(node, gb);
-			System.out.println("EVAL " + node.getEvaluation());
 			return node.getEvaluation();
 		}
 		if(player == playerID)
@@ -63,7 +64,6 @@ public class Joueur extends Othello.Joueur
 				if(v > alpha)
 				{
 					datMove.setMove(child.getMove());
-						System.out.println("SALUT ENCULE");
 				}
 				alpha = Math.max(alpha, v);
 				if (beta >= alpha)
@@ -80,11 +80,6 @@ public class Joueur extends Othello.Joueur
 				clone.addCoin(child.getMove(), other);
 				v = Math.min(v, alphaBeta(child, d - 1, alpha, beta, playerID, clone, datMove));
 				beta = Math.min(beta, v);
-				if(v < beta)
-				{
-					datMove.setMove(child.getMove());
-						System.out.println("SALUT TROUDUCL");
-				}
 				if (beta <= alpha)
 					break;
 			}
