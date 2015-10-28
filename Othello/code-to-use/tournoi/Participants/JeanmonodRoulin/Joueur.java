@@ -60,6 +60,7 @@ public class Joueur extends Othello.Joueur
 				if(v > alpha)
 					datMove = child;
 				alpha = Math.max(alpha, v);
+				System.out.println("ALPHA " + datMove.getEvaluation());
 				if (beta >= alpha)
 					break;
 			}
@@ -76,6 +77,7 @@ public class Joueur extends Othello.Joueur
 				beta = Math.min(beta, v);
 				if(v < beta)
 					datMove = child;
+				System.out.println("ALPHA " + datMove.getEvaluation());
 				if (beta <= alpha)
 					break;
 			}
