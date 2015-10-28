@@ -30,14 +30,22 @@ public class Joueur extends Othello.Joueur
 		Node origin = new Node(move);
 		evaluate(origin, gameBoard);
 		Node datMove = new Node(move);
-		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, 1, gameBoard, datMove);
+		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, playerID, gameBoard, datMove);
 		
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
+	private float nbsquilgparam = 10.0;
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever
 	{
 		//Random random = new Random();
+		int nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves().size();
+		int NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
+		float MEGATURBORATE4nPMEBsMSfFIsaLnzor = (64 - NUMBEROFSQUIGLYROUNDY) / nbsquilgparam;
+		float finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES = MEGATURBORATE4nPMEBsMSfFIsaLnzor * nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor;
+		
+		
+		
 		int salutlacompagnie = gb.getCoinCount(playerID) * 2 - gb.getCoinCount(other)
 								+ gb.getEdgeCoinCount(playerID) * 5 - gb.getEdgeCoinCount(other) * 4
 								+ gb.getCornerCoinCount(playerID) * 10 - gb.getCoinCount(other) * 8;
@@ -62,7 +70,7 @@ public class Joueur extends Othello.Joueur
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), player);
 				v = Math.max(v, alphaBeta(child, d - 1, alpha, beta, other, clone, datMove));
-				if(v > alpha)
+				if(d == depth && v >= alpha)
 				{
 					datMove.setMove(child.getMove());
 				}
@@ -78,7 +86,7 @@ public class Joueur extends Othello.Joueur
 			for(Node child: node.getChildNodeList())
 			{
 				GameBoard clone = gb.clone();
-				clone.addCoin(child.getMove(), other);
+				clone.addCoin(child.getMove(), player);
 				v = Math.min(v, alphaBeta(child, d - 1, alpha, beta, playerID, clone, datMove));
 				beta = Math.min(beta, v);
 				if (beta <= alpha)
