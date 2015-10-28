@@ -71,7 +71,7 @@ public class Node {
 	 */
 	public boolean isLeaf()
 	{
-		return childNodeList.size() == 0;
+		return childNodeList.size()==0;
 	}
 
 }

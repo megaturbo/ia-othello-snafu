@@ -13,12 +13,12 @@ class Joueur extends Othello.Joueur
 	
 	public Joueur(int depth, int playerID)
 	{
-		super(depth, playerID);
+	  this.depth = depth;
+	  this.playerID = playerID;
 	}
 	public Move nextPlay(Move move)
 	{
-		Node origin = new Node(move);
-		origin.setEvaluation(0);
+		Node origin = new Node();
 		int v = alphaBeta(origin, depth, -1234124124, 1241241212, true);
 	    return null;
 	}
@@ -26,12 +26,12 @@ class Joueur extends Othello.Joueur
 	{
 		if (d == 0 || node.isLeaf())
 		{
-			return node.getEvaluation();
+			return node.getValue();
 		}
 		if(player)
 		{
 			int v = -Integer.MAX_VALUE;
-			for(Node child: node.getChildNodeList())
+			for(Node child: node.getChildren())
 			{
 				v = Math.max(v, alphaBeta(child, depth - 1, alpha, beta, false));
 				alpha = Math.max(alpha, v);
@@ -43,7 +43,7 @@ class Joueur extends Othello.Joueur
 		else
 		{
 			int v = Integer.MAX_VALUE;
-			for(Node child: node.getChildNodeList())
+			for(Node child: node.getChildren())
 			{
 				v = Math.min(v, alphaBeta(child, depth - 1, alpha, beta, true));
 				beta = Math.min(beta, v);

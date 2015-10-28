@@ -14,6 +14,7 @@ class Joueur extends Othello.Joueur
 	public Joueur(int depth, int playerID)
 	{
 		super(depth, playerID);
+	  
 	}
 	public Move nextPlay(Move move)
 	{

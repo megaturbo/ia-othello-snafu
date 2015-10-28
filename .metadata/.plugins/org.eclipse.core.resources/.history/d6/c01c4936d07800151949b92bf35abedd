@@ -13,12 +13,12 @@ class Joueur extends Othello.Joueur
 	
 	public Joueur(int depth, int playerID)
 	{
-		super(depth, playerID);
+	  this.depth = depth;
+	  this.playerID = playerID;
 	}
 	public Move nextPlay(Move move)
 	{
 		Node origin = new Node(move);
-		origin.setEvaluation(0);
 		int v = alphaBeta(origin, depth, -1234124124, 1241241212, true);
 	    return null;
 	}
