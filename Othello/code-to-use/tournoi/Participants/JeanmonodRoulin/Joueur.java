@@ -27,7 +27,7 @@ public class Joueur extends Othello.Joueur
 		gameBoard.addCoin(move, other);
 		Node origin = new Node(move);
 		evaluate(origin, gameBoard);
-		Node datMove = null;
+		Node datMove = origin;
 		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, 1, gameBoard, datMove);
 		
 		gameBoard.addCoin(datMove.getMove(), playerID);
@@ -49,6 +49,7 @@ public class Joueur extends Othello.Joueur
 		if (d == 0 || node.isLeaf())
 		{
 			evaluate(node, gb);
+			System.out.println("EVAL " + node.getEvaluation());
 			return node.getEvaluation();
 		}
 		if(player == 1)
