@@ -19,7 +19,7 @@ public class Joueur extends Othello.Joueur
 		super();
 		this.playerID = playerID;
 		this.depth = depth;
-		this.other =  playerID == 1 ? 0 : 1;
+		this.other =  (playerID == 1 ? 0 : 1);
 		gameBoard = new GameBoard();
 	}
 	public Move nextPlay(Move move)
