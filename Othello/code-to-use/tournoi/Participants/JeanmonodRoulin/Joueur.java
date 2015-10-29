@@ -51,15 +51,15 @@ public class Joueur extends Othello.Joueur
 		int nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
 		int finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES = MEGATURBORATE4nPMEBsMSfFIsaLnzor * nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor;
 		
-		int THEREALPURPOSEOFTHISGAME = gb.getCoinCount(playerID);
+		int THEREALPURPOSEOFTHISGAME = gb.getCoinCount(playerID) - gb.getCoinCount(other);
 		
-		int salutlacompagnie = gb.getCoinCount(playerID) * 5 // - gb.getCoinCount(other) * 4
-								+ gb.getEdgeCoinCount(playerID) * 2 // - gb.getEdgeCoinCount(other)
-								+ gb.getCornerCoinCount(playerID) * 20;// - gb.getCoinCount(other) * 10;
+		int salutlacompagnie = gb.getCoinCount(playerID) * 5  - gb.getCoinCount(other) * 4
+								+ gb.getEdgeCoinCount(playerID) * 2  - gb.getEdgeCoinCount(other)
+								+ gb.getCornerCoinCount(playerID) * 50 - gb.getCoinCount(other) * 25;
 		
-		int datfact = b - 64;
-		int slcfact = (64 - b) * b / 32;
-		int TRPfact = b;
+		int datfact = (b - 64) * (b - 64);
+		int slcfact = (64 - b) * b;
+		int TRPfact = b * b;
 				
 		int ANDTHEBESTFUNCTIONEVERRETUUUUUURNS =  finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES * datfact * datparam
 												+ salutlacompagnie * slcfact * slparam
@@ -81,7 +81,7 @@ public class Joueur extends Othello.Joueur
 			return root.getEvaluation();			
 		}
 		int optVal = minOrMax * -Integer.MAX_VALUE;
-		Node optOp = null;
+		Node optOp = new Node(root.getMove());
 		f: for(Node child: root.getChildNodeList())
 		{
 			GameBoard clone = gb.clone();
