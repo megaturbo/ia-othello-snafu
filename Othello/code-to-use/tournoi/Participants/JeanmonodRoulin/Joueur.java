@@ -17,12 +17,12 @@ public class Joueur extends Othello.Joueur
 	public Joueur(int depth, int playerID, double q, double w, double e, double r, double s, double t)
 	{
 		super();
-		this.datparam = q;
-		this.slparam = w;
-		this.TRPparam = e;
-		this.datfact = r; 
-		this.slcfact = s;
-		this.TRPfact = t;
+		this.OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK = q;
+		this.FsfF48sfa86asf111fa_fa421 = w;
+		this.fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f = e;
+		this.BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator = r; 
+		this.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = s;
+		this.abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha = t;
 		this.playerID = playerID;
 		
 		this.depth = depth;
@@ -33,24 +33,12 @@ public class Joueur extends Othello.Joueur
 	{
 		super();
 		
-		// this.datparam = -0.9307259935485904;
-		// this.slparam = -0.4398137270049671;
-		// this.TRPparam = -0.7595574422895612;
-		// this.datfact = -0.565870863857436; 
-		// this.slcfact = -1.57858270749288;
-		// this.TRPfact = -1.6657634658915654;
-		// this.datparam = -0.4596994100811267;
-		// this.slparam = -1.4370191187157024;
-		// this.TRPparam = -0.15125205405091097;
-		// this.datfact = -0.880909081790645; 
-		// this.slcfact = -0.030204036176675872;
-		// this.TRPfact = -0.18623545378707648;
-		// this.datparam = -1.1053228583399208;
-		// this.slparam = -0.36970919544546776;
-		// this.TRPparam = -0.05030395739700148;
-		// this.datfact = 0.6918336650304722; 
-		// this.slcfact = -1.1004668992500286;
-		// this.TRPfact = -1.0432547897554543;
+		this.OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK = -0.9307259935485904;
+		this.FsfF48sfa86asf111fa_fa421 = -0.4398137270049671;
+		this.fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f = -0.7595574422895612;
+		this.BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator = -0.565870863857436; 
+		this.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = -1.57858270749288;
+		this.abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha = -1.6657634658915654;
 		this.playerID = playerID;
 		this.depth = depth;
 		this.other =  (playerID == 1 ? 0 : 1);
@@ -70,19 +58,19 @@ public class Joueur extends Othello.Joueur
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
-	private double datparam;
-	private double slparam ;
-	private double TRPparam;
-	private double datfact;
-	private double slcfact ;
-	private double TRPfact;
+	private double OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK;
+	private double FsfF48sfa86asf111fa_fa421 ;
+	private double fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f;
+	private double BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator;
+	private double aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ;
+	private double abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha;
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
 	{
 		double NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
 		double b = (64 - NUMBEROFSQUIGLYROUNDY) / 64;
-		double datt = -(b + datparam) * (b + datfact);
-		double slct = -(b + slparam) * (b + slcfact);
-		double TRPt = -(b + TRPparam) * (b + TRPfact);	
+		double apriorisonnesaitpluscequilsepassedanscecode = -(b + OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK) * (b + BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator);
+		double slct = -(b + FsfF48sfa86asf111fa_fa421) * (b + aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
+		double HarryPotterAndTheReturnOfTheWhiteGoddessJamesBrownPortal2 = -(b + fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f) * (b + abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha);	
 		
 		double nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
 		
@@ -92,8 +80,8 @@ public class Joueur extends Othello.Joueur
 								- gb.getEdgeCoinCount(playerID) * 2  + gb.getEdgeCoinCount(other)
 								+ gb.getCornerCoinCount(playerID) * 50 - gb.getCoinCount(other) * 25;
 	
-			double ANDTHEBESTFUNCTIONEVERRETUUUUUURNS = nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor * datt 
-				+ slct * salutlacompagnie + TRPt * THEREALPURPOSEOFTHISGAME;
+			double ANDTHEBESTFUNCTIONEVERRETUUUUUURNS = nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor * apriorisonnesaitpluscequilsepassedanscecode 
+				+ slct * salutlacompagnie + HarryPotterAndTheReturnOfTheWhiteGoddessJamesBrownPortal2 * THEREALPURPOSEOFTHISGAME;
 		node.setEvaluation((int)(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS * 5000));
 	}
 	
