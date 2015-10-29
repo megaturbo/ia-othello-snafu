@@ -39,7 +39,7 @@ public class Joueur extends Othello.Joueur
 	private int datparam = 30;
 	private int slparam = 1;
 	private int TRPparam = 3;
-	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever
+	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
 	{
 		int NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
 		int MEGATURBORATE4nPMEBsMSfFIsaLnzor = 64 - NUMBEROFSQUIGLYROUNDY;
@@ -53,6 +53,13 @@ public class Joueur extends Othello.Joueur
 		
 		int THEREALPURPOSEOFTHISGAME = gb.getCoinCount(playerID);
 		
+		Random CHOCOLATEWITHMUSHROOMSINITSHOULDNOTBEEATEN = new Random();
+		
+		double HARRYPOTTERBACKTOTHEFUTURE = datparam;
+		double ABRACADABRA = CHOCOLATEWITHMUSHROOMSINITSHOULDNOTBEEATEN.nextDouble();
+		
+		double JanvierFevrierMardiMercredi = (int)Math.sin(ABRACADABRA * HARRYPOTTERBACKTOTHEFUTURE);
+		
 		int salutlacompagnie = gb.getCoinCount(playerID) * 5 // - gb.getCoinCount(other) * 4
 								+ gb.getEdgeCoinCount(playerID) * 2 // - gb.getEdgeCoinCount(other)
 								+ gb.getCornerCoinCount(playerID) * 20;// - gb.getCoinCount(other) * 10;
@@ -63,7 +70,7 @@ public class Joueur extends Othello.Joueur
 				
 		int ANDTHEBESTFUNCTIONEVERRETUUUUUURNS =  finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES * datfact * datparam
 												+ salutlacompagnie * slcfact * slparam
-												+ THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam;
+												+ (int)(THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam * JanvierFevrierMardiMercredi);
 		node.setEvaluation(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
 	}
 	
