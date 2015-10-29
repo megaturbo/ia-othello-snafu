@@ -14,29 +14,9 @@ public class Joueur extends Othello.Joueur
 		super();
 	}
 	
-	public Joueur(int depth, int playerID, double datparam, double slparam,double TRPparam,double datfact,double slcfact, double TRPfact)
-	{
-		super();
-		this.datparam = datparam;
-		this.slparam = slparam;
-		this.TRPparam = TRPparam;
-		this.datfact = datfact; 
-		this.slcfact = slcfact;
-		this.TRPfact = TRPfact;
-		this.playerID = playerID;
-		this.depth = depth;
-		this.other =  (playerID == 1 ? 0 : 1);
-		gameBoard = new GameBoard();
-	}
 	public Joueur(int depth, int playerID)
 	{
 		super();
-		this.datparam = 3.6677;
-		this.slparam = 26.6774;
-		this.TRPparam = -1.3059;
-		this.datfact = 1.0569; 
-		this.slcfact = 71.9593;
-		this.TRPfact = 2.7401;
 		this.playerID = playerID;
 		this.depth = depth;
 		this.other =  (playerID == 1 ? 0 : 1);
@@ -56,28 +36,25 @@ public class Joueur extends Othello.Joueur
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
-	private double datparam;
-	private double slparam ;
-	private double TRPparam;
-	double datfact;
-	double slcfact ;
-	double TRPfact;
+	private int datparam = 30;
+	private int slparam = 1;
+	private int TRPparam = 3;
 	Random CHOCOLATEWITHMUSHROOMSINITSHOULDNOTBEEATEN = new Random();
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
 	{
-		double NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
-		double MEGATURBORATE4nPMEBsMSfFIsaLnzor = 64 - NUMBEROFSQUIGLYROUNDY;
-		double ineedashortname = MEGATURBORATE4nPMEBsMSfFIsaLnzor;
-		double thisbetter = ineedashortname;
-		double best = thisbetter;
-		double b = best; //better best
+		int NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
+		int MEGATURBORATE4nPMEBsMSfFIsaLnzor = 64 - NUMBEROFSQUIGLYROUNDY;
+		int ineedashortname = MEGATURBORATE4nPMEBsMSfFIsaLnzor;
+		int thisbetter = ineedashortname;
+		int best = thisbetter;
+		int b = best; //better best
 		
-		double nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
-		double finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES = MEGATURBORATE4nPMEBsMSfFIsaLnzor * nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor;
+		int nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
+		int finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES = MEGATURBORATE4nPMEBsMSfFIsaLnzor * nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor;
 		
-		double THEREALPURPOSEOFTHISGAME = gb.getCoinCount(playerID) - gb.getCoinCount(other);
+		int THEREALPURPOSEOFTHISGAME = gb.getCoinCount(playerID) - gb.getCoinCount(other);
 		
-		double salutlacompagnie = gb.getCoinCount(playerID) * 5  - gb.getCoinCount(other) * 4
+		int salutlacompagnie = gb.getCoinCount(playerID) * 5  - gb.getCoinCount(other) * 4
 								+ gb.getEdgeCoinCount(playerID) * 2  - gb.getEdgeCoinCount(other)
 								+ gb.getCornerCoinCount(playerID) * 50 - gb.getCoinCount(other) * 25;
 		
@@ -86,11 +63,14 @@ public class Joueur extends Othello.Joueur
 		
 		double JanvierFevrierMardiMercredi = Math.sin(ABRACADABRA * HARRYPOTTERBACKTOTHEFUTURE);
 		
+		int datfact = (b - 64) * (b - 64);
+		int slcfact = (64 - b) * b;
+		int TRPfact = b * b;
 				
-		double ANDTHEBESTFUNCTIONEVERRETUUUUUURNS =  finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES * datfact * HARRYPOTTERBACKTOTHEFUTURE
+		int ANDTHEBESTFUNCTIONEVERRETUUUUUURNS =  finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES * datfact * datparam
 												+ salutlacompagnie * slcfact * slparam
-												+ THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam * JanvierFevrierMardiMercredi;
-		node.setEvaluation((int)ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
+												+ (int)(THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam * JanvierFevrierMardiMercredi);
+		node.setEvaluation(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
 	}
 	
 	private int alphaBeta(Node root, int d, int minOrMax, int parentValue, GameBoard gb, Node datMove)
