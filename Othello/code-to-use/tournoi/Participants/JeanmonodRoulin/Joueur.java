@@ -28,8 +28,10 @@ public class Joueur extends Othello.Joueur
 		if (gameBoard.getPossibleMoves(playerID).size() == 0)
 			return null; //well played, i concede
 		Node origin = new Node(move);
+		evaluate(origin, gameBoard);
 		Node datMove = new Node(move);
-		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, playerID, gameBoard, datMove);
+		datMove.setEvaluation(-Integer.MAX_VALUE);
+		int v = alphaBeta(origin, depth, 1, origin.getEvaluation(), gameBoard, datMove);
 		
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
@@ -64,12 +66,41 @@ public class Joueur extends Othello.Joueur
 												+ THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam;
 		node.setEvaluation(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
 		
-		Random random = new Random();
-		node.setEvaluation(random.nextInt(100));
+		//Random random = new Random();
+		//node.setEvaluation(random.nextInt(100));
+	}
+	
+	private int alphaBeta(Node root, int d, int minOrMax, int parentValue, GameBoard gb, Node datMove)
+	{
+		int player = minOrMax == 1 ? playerID : other;
+		for(Move checkDemMoves : gb.getPossibleMoves(player))
+			root.addChildNode(new Node(checkDemMoves));
+		if (d == 0 || root.isLeaf())
+		{
+			evaluate(root, gb);
+			return root.getEvaluation();			
+		}
+		int optVal = minOrMax * -Integer.MAX_VALUE;
+		Node optOp = null;
+		f: for(Node child: root.getChildNodeList())
+		{
+			GameBoard clone = gb.clone();
+			clone.addCoin(child.getMove(), player);
+			int val = alphaBeta(child, d - 1, -minOrMax, optVal, clone, datMove);
+			if (val * minOrMax > optVal * minOrMax)
+			{
+				optVal = val;
+				optOp = child;
+				if(optVal * minOrMax > parentValue * minOrMax)
+					break f;
+			}
+		}
+		if (depth == d)datMove.setMove(optOp.getMove());
+		return optVal;
 	}
 	
 	//TODO check that node, not sure about that after all
-	private int alphaBeta(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
+	private int fuckthismethod(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
 	{
 		for(Move checkDemMoves : gb.getPossibleMoves(player))
 			node.addChildNode(new Node(checkDemMoves));
@@ -81,34 +112,34 @@ public class Joueur extends Othello.Joueur
 		if(player == playerID)
 		{
 			int v = -Integer.MAX_VALUE;
-			for(Node child: node.getChildNodeList())
+			f: for(Node child: node.getChildNodeList())
 			{
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), player);
-				v = Math.max(v, alphaBeta(child, d - 1, alpha, beta, other, clone, datMove));
-				if(v >= alpha)
+				v = Math.max(v, fuckthismethod(child, d - 1, alpha, beta, other, clone, datMove));
+				if(d == depth && v >= datMove.getEvaluation())
 				{
-					System.out.println(v + " " + alpha);
-					alpha = v;
+					// alpha = v;
 					datMove.setMove(child.getMove());
+					datMove.setEvaluation(v);
 				}
-				// alpha = Math.max(alpha, v);
+				alpha = Math.max(alpha, v);
 				if (beta <= alpha)
-					break;
+					break f;
 			}
 			return alpha; // v
 		}
 		else
 		{
 			int v = Integer.MAX_VALUE;
-			for(Node child: node.getChildNodeList())
+			f: for(Node child: node.getChildNodeList())
 			{
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), player);
-				v = Math.min(v, alphaBeta(child, d - 1, alpha, beta, playerID, clone, datMove));
+				v = Math.min(v, fuckthismethod(child, d - 1, alpha, beta, playerID, clone, datMove));
 				beta = Math.min(beta, v);
 				if (beta <= alpha)
-					break;
+					break f;
 			}
 			return beta; // v
 		}
