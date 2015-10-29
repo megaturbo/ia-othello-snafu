@@ -65,9 +65,6 @@ public class Joueur extends Othello.Joueur
 												+ salutlacompagnie * slcfact * slparam
 												+ THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam;
 		node.setEvaluation(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
-		
-		//Random random = new Random();
-		//node.setEvaluation(random.nextInt(100));
 	}
 	
 	private int alphaBeta(Node root, int d, int minOrMax, int parentValue, GameBoard gb, Node datMove)
