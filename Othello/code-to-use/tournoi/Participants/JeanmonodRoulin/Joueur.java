@@ -62,14 +62,14 @@ public class Joueur extends Othello.Joueur
 	private double datfact;
 	private double slcfact ;
 	private double TRPfact;
-	Random CHOCOLATEWITHMUSHROOMSINITSHOULDNOTBEEATEN = new Random();
+	//Random CHOCOLATEWITHMUSHROOMSINITSHOULDNOTBEEATEN = new Random();
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
 	{
 		double NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
 		double b = (64 - NUMBEROFSQUIGLYROUNDY) / 64;
-		double datt = -(b + datparam) * (b + datfact);
-		double slct = -(b + slparam) * (b + slcfact);
-		double TRPt = -(b + TRPparam) * (b + TRPfact);
+		double datt = (b + datparam) * (b + datfact);
+		double slct = (b + slparam) * (b + slcfact);
+		double TRPt = (b + TRPparam) * (b + TRPfact);	
 		
 		double nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
 		
@@ -90,7 +90,7 @@ public class Joueur extends Othello.Joueur
 			// + THEREALPURPOSEOFTHISGAME * Math.log(TRPfact) * Math.log(TRPparam) + JanvierFevrierMardiMercredi;
 			double ANDTHEBESTFUNCTIONEVERRETUUUUUURNS = nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor * datt 
 				+ slct * salutlacompagnie + TRPt * THEREALPURPOSEOFTHISGAME;
-		node.setEvaluation((int)ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
+		node.setEvaluation((int)(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS * 5000));
 	}
 	
 	private int alphaBeta(Node root, int d, int minOrMax, int parentValue, GameBoard gb, Node datMove)
