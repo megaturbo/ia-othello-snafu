@@ -28,35 +28,51 @@ public class Joueur extends Othello.Joueur
 		if (gameBoard.getPossibleMoves(playerID).size() == 0)
 			return null; //well played, i concede
 		Node origin = new Node(move);
-		evaluate(origin, gameBoard);
 		Node datMove = new Node(move);
 		int v = alphaBeta(origin, depth, -Integer.MAX_VALUE, Integer.MAX_VALUE, playerID, gameBoard, datMove);
 		
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
-	private float nbsquilgparam = 10.0;
+	private int datparam = 30;
+	private int slparam = 1;
+	private int TRPparam = 3;
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever
 	{
-		//Random random = new Random();
-		int nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves().size();
 		int NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
-		float MEGATURBORATE4nPMEBsMSfFIsaLnzor = (64 - NUMBEROFSQUIGLYROUNDY) / nbsquilgparam;
-		float finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES = MEGATURBORATE4nPMEBsMSfFIsaLnzor * nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor;
+		int MEGATURBORATE4nPMEBsMSfFIsaLnzor = 64 - NUMBEROFSQUIGLYROUNDY;
+		int ineedashortname = MEGATURBORATE4nPMEBsMSfFIsaLnzor;
+		int thisbetter = ineedashortname;
+		int best = thisbetter;
+		int b = best; //better best
 		
+		int nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
+		int finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES = MEGATURBORATE4nPMEBsMSfFIsaLnzor * nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor;
 		
+		int THEREALPURPOSEOFTHISGAME = gb.getCoinCount(playerID);
 		
-		int salutlacompagnie = gb.getCoinCount(playerID) * 2 - gb.getCoinCount(other)
-								+ gb.getEdgeCoinCount(playerID) * 5 - gb.getEdgeCoinCount(other) * 4
-								+ gb.getCornerCoinCount(playerID) * 10 - gb.getCoinCount(other) * 8;
-		node.setEvaluation(salutlacompagnie);
+		int salutlacompagnie = gb.getCoinCount(playerID) * 5 // - gb.getCoinCount(other) * 4
+								+ gb.getEdgeCoinCount(playerID) * 2 // - gb.getEdgeCoinCount(other)
+								+ gb.getCornerCoinCount(playerID) * 20;// - gb.getCoinCount(other) * 10;
 		
-		//node.setEvaluation(random.nextInt(100));
+		int datfact = b - 64;
+		int slcfact = (64 - b) * b / 32;
+		int TRPfact = b;
+				
+		int ANDTHEBESTFUNCTIONEVERRETUUUUUURNS =  finalPUBLICSTATICLOLrate4nbPENEMYMEGAMOVES * datfact * datparam
+												+ salutlacompagnie * slcfact * slparam
+												+ THEREALPURPOSEOFTHISGAME * TRPfact * TRPparam;
+		node.setEvaluation(ANDTHEBESTFUNCTIONEVERRETUUUUUURNS);
+		
+		Random random = new Random();
+		node.setEvaluation(random.nextInt(100));
 	}
+	
+	//TODO check that node, not sure about that after all
 	private int alphaBeta(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
 	{
-		for(Move checkDatMoves : gb.getPossibleMoves(player))
-			node.addChildNode(new Node(checkDatMoves));
+		for(Move checkDemMoves : gb.getPossibleMoves(player))
+			node.addChildNode(new Node(checkDemMoves));
 		if (d == 0 || node.isLeaf())
 		{
 			evaluate(node, gb);
@@ -70,15 +86,17 @@ public class Joueur extends Othello.Joueur
 				GameBoard clone = gb.clone();
 				clone.addCoin(child.getMove(), player);
 				v = Math.max(v, alphaBeta(child, d - 1, alpha, beta, other, clone, datMove));
-				if(d == depth && v >= alpha)
+				if(v >= alpha)
 				{
+					System.out.println(v + " " + alpha);
+					alpha = v;
 					datMove.setMove(child.getMove());
 				}
-				alpha = Math.max(alpha, v);
-				if (beta >= alpha)
+				// alpha = Math.max(alpha, v);
+				if (beta <= alpha)
 					break;
 			}
-			return v;
+			return alpha; // v
 		}
 		else
 		{
@@ -92,7 +110,7 @@ public class Joueur extends Othello.Joueur
 				if (beta <= alpha)
 					break;
 			}
-			return v;
+			return beta; // v
 		}
 	}
 }
