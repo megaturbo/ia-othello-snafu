@@ -7,38 +7,36 @@ import Participants.JeanmonodRoulin.*;
 import java.util.Random;
 
 public class Joueur extends Othello.Joueur
-{
+{// _.'^^'.    
+    // _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ // ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+// :                          /\/\/\/\,-'              `-.__   jgs
+// ^VvvvvvvvvvvVvVv                   |                     `-._
+  // ;^^^^^^^^^^^`      /             `\        /               `-._
+   // ```````````````'.`                `\     (                    `'-._
+            // .-----'`   /\              `\    )--.______.______._______`/ 
+           // (((------'``  `'--------'`(((----'
 	private GameBoard gameBoard;
 	private int other;
-	public Joueur(){
-		super();
-	}
 	
-	public Joueur(int depth, int playerID, double q, double w, double e, double r, double s, double t)
-	{
-		super();
-		this.OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK = q;
-		this.FsfF48sfa86asf111fa_fa421 = w;
-		this.fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f = e;
-		this.BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator = r; 
-		this.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = s;
-		this.abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha = t;
-		this.playerID = playerID;
-		
-		this.depth = depth;
-		this.other =  (playerID == 1 ? 0 : 1);
-		gameBoard = new GameBoard();
-	}
 	public Joueur(int depth, int playerID)
-	{
+	{// _.'^^'.    
+    // _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ // ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+// :                          /\/\/\/\,-'              `-.__   jgs
+// ^VvvvvvvvvvvVvVv                   |                     `-._
+  // ;^^^^^^^^^^^`      /             `\        /               `-._
+   // ```````````````'.`                `\     (                    `'-._
+            // .-----'`   /\              `\    )--.______.______._______`/ 
+           // (((------'``  `'--------'`(((----'
 		super();
 		
-		this.OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK = -0.9307259935485904;
-		this.FsfF48sfa86asf111fa_fa421 = -0.4398137270049671;
-		this.fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f = -0.7595574422895612;
-		this.BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator = -0.565870863857436; 
-		this.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = -1.57858270749288;
-		this.abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha = -1.6657634658915654;
+		this.OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK = -0.4596994100811267;
+		this.FsfF48sfa86asf111fa_fa421 = -1.4370191187157024;
+		this.fuf$faos888fafefeafilhof$faoutteoiseau$2$1410fgentiloiseau$2$1410f = -0.15125205405091097;
+		this.BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator = -0.880909081790645; 
+		this.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = -0.030204036176675872;
+		this.abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha = -0.18623545378707648;
 		this.playerID = playerID;
 		this.depth = depth;
 		this.other =  (playerID == 1 ? 0 : 1);
@@ -46,6 +44,15 @@ public class Joueur extends Othello.Joueur
 	}
 	public Move nextPlay(Move move)
 	{
+		// _.'^^'.    
+    // _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ // ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+// :                          /\/\/\/\,-'              `-.__   jgs
+// ^VvvvvvvvvvvVvVv                   |                     `-._
+  // ;^^^^^^^^^^^`      /             `\        /               `-._
+   // ```````````````'.`                `\     (                    `'-._
+            // .-----'`   /\              `\    )--.______.______._______`/ 
+           // (((------'``  `'--------'`(((----'
 		gameBoard.addCoin(move, other);
 		if (gameBoard.getPossibleMoves(playerID).size() == 0)
 			return null; //well played, i concede
@@ -55,22 +62,33 @@ public class Joueur extends Othello.Joueur
 		datMove.setEvaluation(-Integer.MAX_VALUE);
 		int v = alphaBeta(origin, depth, 1, origin.getEvaluation(), gameBoard, datMove);
 		
+		
+		
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
 	private double OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK;
 	private double FsfF48sfa86asf111fa_fa421 ;
-	private double fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f;
+	private double fuf$faos888fafefeafilhof$faoutteoiseau$2$1410fgentiloiseau$2$1410f;
 	private double BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator;
 	private double aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ;
 	private double abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha;
 	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
 	{
+		// _.'^^'.    
+    // _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ // ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+// :                          /\/\/\/\,-'              `-.__   jgs
+// ^VvvvvvvvvvvVvVv                   |                     `-._
+  // ;^^^^^^^^^^^`      /             `\        /               `-._
+   // ```````````````'.`                `\     (                    `'-._
+            // .-----'`   /\              `\    )--.______.______._______`/ 
+           // (((------'``  `'--------'`(((----'
 		double NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
 		double b = (64 - NUMBEROFSQUIGLYROUNDY) / 64;
 		double apriorisonnesaitpluscequilsepassedanscecode = -(b + OVERLORDZ_JEEZ_MYGAD_STEELMANOFTHEDYINGKAYAK) * (b + BonjourMadameCetteVariableEstTresUtileALaConceptionDeCetAlgorithmeDeTypeAligator);
 		double slct = -(b + FsfF48sfa86asf111fa_fa421) * (b + aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
-		double HarryPotterAndTheReturnOfTheWhiteGoddessJamesBrownPortal2 = -(b + fuf$@faos888fafefeafilhof$@faoutteoiseau$2$1410fgentiloiseau$2$1410f) * (b + abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha);	
+		double HarryPotterAndTheReturnOfTheWhiteGoddessJamesBrownPortal2 = -(b + fuf$faos888fafefeafilhof$faoutteoiseau$2$1410fgentiloiseau$2$1410f) * (b + abcdefghijklmnopqrstuvwxyzAlphabetahahahahahaha);	
 		
 		double nbPossibleMEGAENEMYBOSSsexyMovesStreetfightFuckITsaLongnamezor = gb.getPossibleMoves(other).size();
 		
@@ -87,6 +105,15 @@ public class Joueur extends Othello.Joueur
 	
 	private int alphaBeta(Node root, int d, int minOrMax, int parentValue, GameBoard gb, Node datMove)
 	{
+		// _.'^^'.    
+    // _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ // ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+// :                          /\/\/\/\,-'              `-.__   jgs
+// ^VvvvvvvvvvvVvVv                   |                     `-._
+  // ;^^^^^^^^^^^`      /             `\        /               `-._
+   // ```````````````'.`                `\     (                    `'-._
+            // .-----'`   /\              `\    )--.______.______._______`/ 
+           // (((------'``  `'--------'`(((----'
 		int player = minOrMax == 1 ? playerID : other;
 		for(Move checkDemMoves : gb.getPossibleMoves(player))
 			root.addChildNode(new Node(checkDemMoves));
@@ -114,3 +141,22 @@ public class Joueur extends Othello.Joueur
 		return optVal;
 	}
 }
+
+// _.'^^'.    
+    // _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ // ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+// :                          /\/\/\/\,-'              `-.__   jgs
+// ^VvvvvvvvvvvVvVv                   |                     `-._
+  // ;^^^^^^^^^^^`      /             `\        /               `-._
+   // ```````````````'.`                `\     (                    `'-._
+            // .-----'`   /\              `\    )--.______.______._______`/ 
+           // (((------'``  `'--------'`(((----'
+		   
+		   
+		   // > be me 22 +-
+		   // > playing algorithm
+		   // > making crocodiles
+		   // > wat.jpg
+		   
+		   
+		   //everybody walking the dinosaur
