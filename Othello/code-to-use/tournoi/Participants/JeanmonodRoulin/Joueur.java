@@ -14,25 +14,17 @@ public class Joueur extends Othello.Joueur
 		super();
 	}
 	
-	public Joueur(int depth, int playerID, double rAA, double rAE, double rCA, double rCE, double rE, double rA, double rAm, double rEm)
+	public Joueur(int depth, int playerID, double q, double w, double e, double r, double s, double t)
 	{
 		super();
-		// this.datparam = datparam;
-		// this.slparam = slparam;
-		// this.TRPparam = TRPparam;
-		// this.datfact = datfact; 
-		// this.slcfact = slcfact;
-		// this.TRPfact = TRPfact;
-		// this.playerID = playerID;
+		this.datparam = q;
+		this.slparam = w;
+		this.TRPparam = e;
+		this.datfact = r; 
+		this.slcfact = s;
+		this.TRPfact = t;
+		this.playerID = playerID;
 		
-	this.rAA = rAA;
-	this.rAE = rAE;
-	this.rCA = rCA;
-	this.rCE = rCE;
-	this.rE = rE;
-	this.rA = rA;
-	this.rAm = rAm;
-	this.rEm = rEm;
 		this.depth = depth;
 		this.other =  (playerID == 1 ? 0 : 1);
 		gameBoard = new GameBoard();
@@ -78,32 +70,13 @@ public class Joueur extends Othello.Joueur
 		gameBoard.addCoin(datMove.getMove(), playerID);
 	    return datMove.getMove();
 	}
-	private double rAA;
-	private double rAE;
-	private double rCA;
-	private double rCE;
-	private double rE;
-	private double rA;
-	private double rAm;
-	private double rEm;
-	//Random CHOCOLATEWITHMUSHROOMSINITSHOULDNOTBEEATEN = new Random();
-	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
-	{
-		node.setEvaluation((int)(gb.getEdgeCoinCount(playerID) * rAA+		gb.getEdgeCoinCount(other) * rAE+
-		 gb.getCornerCoinCount(playerID) * rCA+
-		 gb.getCornerCoinCount(other) * rCE+
-		 gb.getCoinCount(playerID) * rE+
-		gb.getCoinCount(other) * rA+
-		 gb.getPossibleMoves(playerID).size() * rAm+
-		 gb.getPossibleMoves(other).size() * rEm));
-	}
 	private double datparam;
 	private double slparam ;
 	private double TRPparam;
 	private double datfact;
 	private double slcfact ;
 	private double TRPfact;
-	private void evaluateOld(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
+	private void evaluate(Node node, GameBoard gb) // lol best algorithm ever ever ever ever ever ever ever ever 
 	{
 		double NUMBEROFSQUIGLYROUNDY = gb.getCoinCount(playerID) + gb.getCoinCount(other);
 		double b = (64 - NUMBEROFSQUIGLYROUNDY) / 64;
@@ -151,51 +124,5 @@ public class Joueur extends Othello.Joueur
 		}
 		if (depth == d)datMove.setMove(optOp.getMove());
 		return optVal;
-	}
-	
-	//TODO check that node, not sure about that after all
-	private int fuckthismethod(Node node, int d, int alpha, int beta, int player, GameBoard gb, Node datMove)
-	{
-		for(Move checkDemMoves : gb.getPossibleMoves(player))
-			node.addChildNode(new Node(checkDemMoves));
-		if (d == 0 || node.isLeaf())
-		{
-			evaluate(node, gb);
-			return node.getEvaluation();
-		}
-		if(player == playerID)
-		{
-			int v = -Integer.MAX_VALUE;
-			f: for(Node child: node.getChildNodeList())
-			{
-				GameBoard clone = gb.clone();
-				clone.addCoin(child.getMove(), player);
-				v = Math.max(v, fuckthismethod(child, d - 1, alpha, beta, other, clone, datMove));
-				if(d == depth && v >= datMove.getEvaluation())
-				{
-					// alpha = v;
-					datMove.setMove(child.getMove());
-					datMove.setEvaluation(v);
-				}
-				alpha = Math.max(alpha, v);
-				if (beta <= alpha)
-					break f;
-			}
-			return alpha; // v
-		}
-		else
-		{
-			int v = Integer.MAX_VALUE;
-			f: for(Node child: node.getChildNodeList())
-			{
-				GameBoard clone = gb.clone();
-				clone.addCoin(child.getMove(), player);
-				v = Math.min(v, fuckthismethod(child, d - 1, alpha, beta, playerID, clone, datMove));
-				beta = Math.min(beta, v);
-				if (beta <= alpha)
-					break f;
-			}
-			return beta; // v
-		}
 	}
 }
