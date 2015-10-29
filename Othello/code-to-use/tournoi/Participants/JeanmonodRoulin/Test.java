@@ -32,12 +32,13 @@ class Test{
 			if(DISQUALIFIED == 0)
 			{
 				System.out.println("P2 DISQUALIFED !!!");
-				
+				p2 = copyOfACopy(p1);
 				SHOWMEWHATYOUGOT(p2);
 			}
 			else
 			{
 				System.out.println("P1 DISQUALIFED !!!");
+				p1 = copyOfACopy(p2);
 				SHOWMEWHATYOUGOT(p1);
 			}
 		}
@@ -46,22 +47,32 @@ class Test{
 		ROSETTASTONED(p2);
 	}
 	
+	public static double[] copyOfACopy(double [] p)
+	{
+		double r [] = new double[6];
+		for(int i = 0; i < 6; i++)
+		{
+			r[i] = p[i];
+		}
+		return r;
+	}
+	
 	public static void ROSETTASTONED(double[] p)
 	{
-		System.out.println("datparam = " + p[0]);
-		System.out.println("slparam = " + p[1]);
-		System.out.println("TRPparam = "+  p[2]);
-		System.out.println("datfact = "+  p[3]);
-		System.out.println("slcfact = "+ p[4]);
-		System.out.println("TRPfact = "+ p[5]);
+		System.out.println("datparam = " + Math.log(p[0]));
+		System.out.println("slparam = " + Math.log(p[1]));
+		System.out.println("TRPparam = "+  Math.log(p[2]));
+		System.out.println("datfact = "+  Math.log(p[3]));
+		System.out.println("slcfact = "+ Math.log(p[4]));
+		System.out.println("TRPfact = "+ Math.log(p[5]));
 	}
 
 	public static int FIGHT(double[] p1, double[] p2)
 	{
 		GameBoard gb = new GameBoard();
 		Move m = null;
-		Joueur j1 = new Joueur(5, 0, p1[0], p1[1], p1[2], p1[3], p1[4], p1[5]);
-		Joueur j2 = new Joueur(5, 1, p2[0], p2[1], p2[2], p2[3], p2[4], p2[5]);
+		Joueur j1 = new Joueur(5, 0, Math.log(p1[0]), Math.log(p1[1]),Math.log(p1[2]), Math.log(p1[3]),Math.log( p1[4]), Math.log(p1[5]));
+		Joueur j2 = new Joueur(5, 1, Math.log(p2[0]),Math.log( p2[1]), Math.log(p2[2]), Math.log(p2[3]), Math.log(p2[4]), Math.log(p2[5]));
 		while(gb.getPossibleMoves(0).size() + gb.getPossibleMoves(1).size() > 0)
 		{
 			m = j1.nextPlay(m);
@@ -76,7 +87,7 @@ class Test{
 
 	public static void SHOWMEWHATYOUGOT(double[] p)
 	{
-		double THEWINNINGNUMBER = RANDOMIZEME.nextDouble() * 6.0 - 3.0;
+		double THEWINNINGNUMBER = RANDOMIZEME.nextDouble() *0.1 + 0.95;
 		int THEWINNINGPARAM = RANDOMIZEME.nextInt(6);
 		p[THEWINNINGPARAM] *= THEWINNINGNUMBER;
 		System.out.println("new params");
